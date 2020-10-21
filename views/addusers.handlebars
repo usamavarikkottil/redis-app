@@ -1,0 +1,31 @@
+<h1>Add Users</h1>
+{{#if error}} <span> {{error}}</span> {{/if}}
+<form class=" my-2 my-lg-0" method="POST" action="/user/add">
+
+<div class="form-group">
+
+    <label for="id">User Unique ID: </label>
+    <input class="form-control mr-sm-2" type="text" id="id" name="id" placeholder="Add ID" aria-label="Add ID">
+
+</div>
+<div class="form-group">
+    
+    <label for="firstName">First Name: </label>
+    <input class="form-control mr-sm-2" type="text" id="firstName" name="firstName" placeholder="First name">
+</div>
+<div class="form-group">
+    <label for="lastName">Last name </label>
+    <input class="form-control mr-sm-2" type="text" id="lastName" name="lastName" placeholder="Add Last name"
+        aria-label="Add last name">
+</div><div class="form-group">
+    <label for="id">Email </label>
+    <input class="form-control mr-sm-2" type="text" id="email" name="email" placeholder="Add email"
+        aria-label="Add email">
+</div>
+<div class="form-group">
+    <label for="phone">Phone </label>
+    <input class="form-control mr-sm-2" type="text" id="phone" name="phone" placeholder="Add phone"
+        aria-label="Add phone">
+</div>
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Add</button>
+</form>

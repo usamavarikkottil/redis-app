@@ -27,13 +27,17 @@ app.use(methodOverride("_method"));
 // Routes
 
 // Search page
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
 res.render("searchusers");
 });
 
+// Add user Page
+app.get("/user/add", (req, res) => {
+    res.render("addusers");
+});
 
 // Search processs
-app.post("/users/search", (req, res, next) => {
+app.post("/users/search", (req, res) => {
 
     let id = req.body.id;
     client.hgetall(id, function (err, obj) {
@@ -48,6 +52,37 @@ app.post("/users/search", (req, res, next) => {
         }
     })
 
+})
+
+// Add User Process
+app.post("/user/add", (req, res) => {
+
+    let id = req.body.id;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let email = req.body.email;
+    let phone = req.body.phone;
+    client.hset(id,[
+        "firstName",firstName, "lastName", lastName, "email",email, "phone", phone
+    ] ,function (err, obj) {
+        
+        if (err) {
+            res.send(err);
+            
+        } else {
+        //    console.log(obj);
+           res.redirect("/");
+            
+        }
+    })
+
+})
+
+// Process DELETE User
+
+app.delete("/user/delete/:userId", (req, res) => {
+client.del(req.params.userId);
+res.redirect("/");
 })
 
 app.listen(port, () => console.log(`Server Started on port ${port}`));
